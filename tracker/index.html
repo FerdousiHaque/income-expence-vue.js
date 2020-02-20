@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div class="container">
+    <div id="app">
+        <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+          <h2>Incomes-Expances Traker </h2>
+        </nav>
+        <div v-for="(income,n) in incomes">
+          <p>
+          <span class="iselect">{{ iselect[n] }} = </span>
+          <span class="income">{{income}}</span> <button type="button" class="btn btn-outline-success" @click="removeIncome(n)">Remove</button>
+          </p>
+        </div>
+        
+        <p>
+          <select v-model="itype">
+            <option disabled value="">Select Income</option>
+            <option>Salary</option>
+            <option>Bonus</option>
+            <option>Outsourcing</option>
+            <option>Bank Interest</option>
+          </select>
+          <input v-model.number="newIncome" type="number"> 
+          <button type="button" class="btn btn-dark" @click="addIncome">Add Income</button>
+        </p>
+        <h4>Total Income : {{ totalIncome }}</h4>
+        <div v-for="(expance,n) in expances">
+          <p>
+          <span class="eselect">{{ eselect[n] }} = </span>
+          <span class="expance">{{expance}}</span> <button type="button" class="btn btn-outline-danger" @click="removeExpance(n)">Remove</button>
+          </p>
+        </div>
+        
+        <p>
+          <select v-model="etype">
+            <option disabled value="">Select Expances</option>
+            <option>Food</option>
+            <option>Water</option>
+            <option>Credit Card Bill</option>
+            <option>Security Purpose</option>
+          </select>
+          <input v-model.number="newExpance" type="number"> 
+          <button type="button" class="btn btn-dark" @click="addExpance">Add Expance</button>
+        </p>
+        <h4>Total Expances: {{ totalExpaces }}</h4>
+      </div>
+      </div>
+
+      <script src="file.js"></script>
+</body>
+</html> 
