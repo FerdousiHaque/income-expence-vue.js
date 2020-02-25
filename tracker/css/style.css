@@ -1,0 +1,20 @@
+* {
+    font-family: 'Permanent Marker', ;
+}
+
+h3 {
+    text-align: center;
+}
+
+.card {
+    float: left;
+    width: 33.33%;
+    padding: 50px;
+  }
+
+/* create responsive */
+@media (max-width: 600px) {
+    .card {
+      width: 100%;
+    }
+  }
