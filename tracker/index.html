@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Tracker</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Tracker</title>
   <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 </head>
 <body>
@@ -29,33 +32,62 @@
             <option>Bonus</option>
             <option>Outsourcing</option>
             <option>Bank Interest</option>
+            <option>Gifts</option>
           </select>
           <input v-model.number="newIncome" type="number"> 
           <button type="button" class="btn btn-dark" @click="addIncome">Add Income</button>
         </p>
-        <h4>Total Income : {{ totalIncome }}</h4>
+        <h4>
+          Total Income : 
+          <animated-integer v-bind:value="totalIncome"></animated-integer>
+        </h4>
         <div v-for="(expance,n) in expances">
           <p>
           <span class="eselect">{{ eselect[n] }} = </span>
           <span class="expance">{{expance}}</span> <button type="button" class="btn btn-outline-danger" @click="removeExpance(n)">Remove</button>
           </p>
         </div>
-        
         <p>
           <select v-model="etype">
             <option disabled value="">Select Expances</option>
             <option>Food</option>
-            <option>Water</option>
+            <option>Water Bill</option>
             <option>Credit Card Bill</option>
             <option>Security Purpose</option>
+            <option>Current Bill</option>
           </select>
           <input v-model.number="newExpance" type="number"> 
           <button type="button" class="btn btn-dark" @click="addExpance">Add Expance</button>
         </p>
-        <h4>Total Expances: {{ totalExpaces }}</h4>
+        <h4>
+          Total Expances:
+          <animated-integer v-bind:value="totalExpaces"></animated-integer>
+        </h4>
+        <div class="container">
+          <h3>Summary of these</h3>
+          <div class="card">
+              <h4>Daily</h4>
+              <h5>Incomes : </h5>
+              <p><animated-integer v-bind:value="dIncome"></animated-integer></p>
+              <h5>Expances : </h5>
+              <P><animated-integer v-bind:value="dExpaces"></animated-integer></P>
+            </div>
+          <div class="card">
+              <h4>Monthly</h4>
+              <h5>Incomes : </h5>
+              <p><animated-integer v-bind:value="totalIncome"></animated-integer></p>
+              <h5>Expances : </h5>
+              <P><animated-integer v-bind:value="totalExpaces"></animated-integer></P>
+          </div>
+          <div class="card">
+              <h4>Yearly</h4>
+              <h5>Incomes : </h5>
+              <p><animated-integer v-bind:value="yearIncome"></animated-integer></p>
+              <h5>Expances : </h5>
+              <P><animated-integer v-bind:value="yearExpances"></animated-integer></P>
+          </div>
+          </div>
       </div>
-      </div>
-
       <script src="file.js"></script>
 </body>
 </html> 
