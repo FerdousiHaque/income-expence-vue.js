@@ -1,3 +1,44 @@
+Vue.component('animated-integer', {
+  template: '<span>{{ tweeningValue }}</span>',
+  props: {
+    value: {
+      type: Number,
+      required: true
+    }
+  },
+  data: function () {
+    return {
+      tweeningValue: 0
+    }
+  },
+  watch: {
+    value: function (newValue, oldValue) {
+      this.tween(oldValue, newValue)
+    }
+  },
+  mounted: function () {
+    this.tween(0, this.value)
+  },
+  methods: {
+    tween: function (startValue, endValue) {
+      var vm = this
+      function animate () {
+        if (TWEEN.update()) {
+          requestAnimationFrame(animate)
+        }
+      }
+
+      new TWEEN.Tween({ tweeningValue: startValue })
+        .to({ tweeningValue: endValue }, 500)
+        .onUpdate(function () {
+          vm.tweeningValue = this.tweeningValue.toFixed(0)
+        })
+        .start()
+      animate()
+    }
+  }
+})
+
 const app = new Vue({
   el:'#app',
   data: {
@@ -105,6 +146,42 @@ const app = new Vue({
         etotal = etotal + this.expances[i];
       }
       return etotal
+    },
+    yearIncome: function () {
+      var ytotal = this.incomes[0]
+      for (let i = 1; i < this.incomes.length; i++)
+      {
+        ytotal = ytotal + this.incomes[i];
+      }
+      ytotal = ytotal * 12
+      return ytotal
+    },
+    yearExpances: function () {
+      var total = this.expances[0]
+      for (let i = 1; i < this.expances.length; i++)
+      {
+        total =  + this.expances[i];
+      }
+      total = total * 12
+      return total
+    },
+    dIncome: function () {
+      var dtotal = this.expances[0]
+      for (let i = 1; i < this.expances.length; i++)
+      {
+        dtotal =  + this.expances[i];
+      }
+      dtotal = dtotal / 30
+      return dtotal
+    },
+    dExpances: function () {
+      var totald = this.expances[0]
+      for (let i = 1; i < this.expances.length; i++)
+      {
+        totald =  + this.expances[i];
+      }
+      totald = totald / 30
+      return totald
     }
   }
 })
